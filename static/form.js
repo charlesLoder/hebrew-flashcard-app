@@ -1,6 +1,6 @@
 const form = document.querySelector("#form");
 
-const downloadFile = (url) => {
+const downloadFile = (url, fileName) => {
   const a = document.createElement("a");
   a.href = url;
   a.download = fileName;
@@ -21,14 +21,13 @@ form.addEventListener("submit", async (e) => {
       headers: new Headers({ "Content-Type": "application/json" }),
       body: JSON.stringify({ count, book }),
     });
-    const fileName =
-      resp.headers
-        .get("content-disposition")
-        .split("filename=")[1]
-        .split(";")[0] || "defaul-name.csv";
     const blob = await resp.blob();
+    const fileName = resp.headers
+      .get("content-disposition")
+      .split("filename=")[1]
+      .split(";")[0];
     const url = window.URL.createObjectURL(new File([blob], fileName));
-    downloadFile(url);
+    downloadFile(url, fileName);
   } catch (error) {
     const mssg = error.message || "Looks like there was an error!";
     alert(mssg);
