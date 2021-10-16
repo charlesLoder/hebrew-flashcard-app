@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, send_file, after_this_request
 from flashcards import create_csv
 
 app = Flask(__name__)
+port = int(os.environ.get('PORT', 5000))
 
 site_title = "Hebrew Flashcards"
 
@@ -36,4 +37,4 @@ def flashcards():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=port, debug=True)
