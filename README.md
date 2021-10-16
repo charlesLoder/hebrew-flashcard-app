@@ -4,7 +4,7 @@ A web app for generating flashcards using the [hebrew-vocab-tools](https://githu
 
 ## live
 
-Use a live version [here](/#)!
+Use a live version [here](https://hebrew-flashcard-app.herokuapp.com/)!
 
 ## install
 
