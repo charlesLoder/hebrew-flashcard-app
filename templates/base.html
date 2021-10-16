@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
+    <title>{{ title }}</title>
+  </head>
+  <body class="h-screen flex flex-col">
+    {% include 'header.html' %}
+    <main class="bg-indigo-400 flex flex-col flex-1">
+      <div id="wrapper" class="items-center px-5 py-12 lg:px-20 flex-grow flex-1">
+        <div id="content" class="shadow-lg flex flex-col w-full p-10 px-8 pt-6 mx-auto my-6 mb-4 transition duration-500 ease-in-out transform bg-white border rounded-lg lg:w-1/2 ">
+          {% block content %} {% endblock %}
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
