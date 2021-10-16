@@ -1,0 +1,3 @@
+[submodule "hebrew-vocab-tools"]
+	path = hebrew-vocab-tools
+	url = https://github.com/fhardison/hebrew-vocab-tools.git
