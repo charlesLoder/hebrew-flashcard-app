@@ -16,10 +16,12 @@ form.addEventListener("submit", async (e) => {
     const data = new URLSearchParams(formData);
     const count = data.get("count");
     const book = data.get("book");
+    const chap_start = data.get("chap_start");
+    const chap_end = data.get("chap_end");
     const resp = await fetch("/flashcards", {
       method: "POST",
       headers: new Headers({ "Content-Type": "application/json" }),
-      body: JSON.stringify({ count, book }),
+      body: JSON.stringify({ count, book, chap_start, chap_end }),
     });
     const blob = await resp.blob();
     const fileName = resp.headers
