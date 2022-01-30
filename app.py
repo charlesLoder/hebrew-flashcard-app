@@ -1,4 +1,5 @@
 import os
+import importlib
 from flask import Flask, render_template, request, send_file, after_this_request
 from flashcards import create_csv
 
@@ -7,10 +8,20 @@ port = int(os.environ.get('PORT', 5000))
 
 site_title = "Hebrew Flashcards"
 
+f = open('./hebrew-vocab-tools/books.txt', 'r')
+books = f.read()
+f.close()
+
+lines = books.split("\n")
+
+def getBook(line):
+    return line.split(' ')[0]
+
+book_list = list(map(getBook,lines))
 
 @app.route("/")
 def index():
-    return render_template('index.html', title=site_title)
+    return render_template('index.html', title=site_title, book_list=book_list)
 
 
 @app.route("/about")
