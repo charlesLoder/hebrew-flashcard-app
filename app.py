@@ -33,7 +33,9 @@ def about():
 def flashcards():
     data = request.get_json()
     book, count = data['book'], int(data['count'])
-    file = create_csv(book, count)
+    chap_start = int(data['chap_start']) if data['chap_start'] else None
+    chap_end = int(data['chap_end']) if data['chap_end'] else None
+    file = create_csv(book, count, chap_start, chap_end)
     file_path = file.name
 
     @after_this_request
