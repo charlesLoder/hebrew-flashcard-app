@@ -38,13 +38,36 @@
             {% endfor %}
           </datalist>
         </div>
-        <!-- Button --->
-        <div class="flex items-center w-full pt-4 mb-4">
-          <button class="w-full py-3 text-base text-white transition duration-500 ease-in-out transform bg-indigo-600 border-indigo-600
-              rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:bg-indigo-800 ">
-            Get Flashcards!
-          </button>
-        </div>
-      </form>
-      <script src="{{ url_for('static', filename='form.js') }}"></script>
-    {% endblock %}
+        <!-- Chapters --->
+        <div class="relative mt-4">
+          <label for="chap-start-input" class="text-base leading-7 text-blueGray-500">from chapters (optional):</label>
+          <div class="grid grid-cols-2 gap-1">
+            <input
+              type="number"
+              min="1"
+              id="chap-start-input"
+              name="chap_start"
+              placeholder="…"
+              class="w-half px-4 py-2 text-base text-black transition duration-500 ease-in-out transform rounded-lg bg-gray-100
+                focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current
+                ring-offset-2">
+              <input
+                type="number"
+                min="1"
+                id="chap-end-input"
+                name="chap_end"
+                placeholder="…"
+                class="w-half px-4 py-2 text-base text-black transition duration-500 ease-in-out transform rounded-lg bg-gray-100
+                  focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current
+                  ring-offset-2"></div>
+            </div>
+            <!-- Button --->
+            <div class="flex items-center w-full pt-4 mb-4">
+              <button class="w-full py-3 text-base text-white transition duration-500 ease-in-out transform bg-indigo-600 border-indigo-600
+                  rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:bg-indigo-800 ">
+                Get Flashcards!
+              </button>
+            </div>
+          </form>
+          <script src="{{ url_for('static', filename='form.js') }}"></script>
+        {% endblock %}
