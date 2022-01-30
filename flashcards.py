@@ -26,13 +26,19 @@ def get_gloss(strongs):
     return f"{gloss} ({morph_code})"
 
 
-def create_csv(book_id, less_than_count=100):
+def create_csv(book_id, less_than_count=100, chap_start=None, chap_end=None):
     """
     Create csv files containing lemmas used less than X number of times in a book
     """
-    book_counts = Counter(get_tokens_by_chunk(
-        TokenType.lemma, ChunkType.book)[book_id])
-    f = open(f"{book_id}_{less_than_count}_cards.csv", 'w', encoding="UTF-8")
+    chunks = []
+    if chap_start and chap_end:
+        chaps = range(chap_start, chap_end + 1)
+        for chap in chaps:
+            chunks.extend(get_tokens_by_chunk(TokenType.lemma, ChunkType.chapter)[f'{book_id}.{str(chap)}'])
+    else:
+        chunks.extend(get_tokens_by_chunk(TokenType.lemma, ChunkType.book)[book_id])
+    book_counts = Counter(chunks)
+    f = open(f"{book_id}{'_'+ str(chap_start )+ '-' + str(chap_end) if chap_start else ''}_{less_than_count}_cards.csv", 'w', encoding="UTF-8")
     writer = csv.writer(f)
     writer.writerow(["Lemma", "Gloss"])
     writer.writerow(["Example (Occurrences)", "Gloss (Parsing)"])
