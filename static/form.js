@@ -16,8 +16,15 @@ form.addEventListener("submit", async (e) => {
     const data = new URLSearchParams(formData);
     const count = data.get("count");
     const book = data.get("book");
-    const chap_start = data.get("chap_start");
-    const chap_end = data.get("chap_end");
+    const chap_start = data.get("chap_start").trim();
+    const chap_end = data.get("chap_end").trim();
+    console.log(chap_start || chap_end);
+    if (chap_start && !chap_end) {
+      throw new Error("Either both or no chapters need to be completed");
+    }
+    if (!chap_start && chap_end) {
+      throw new Error("Either both or no chapters need to be completed");
+    }
     const resp = await fetch("/flashcards", {
       method: "POST",
       headers: new Headers({ "Content-Type": "application/json" }),
