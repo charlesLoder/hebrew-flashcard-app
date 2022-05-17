@@ -35,6 +35,14 @@ def flashcards():
     book, count = data['book'], int(data['count'])
     chap_start = int(data['chap_start']) if data['chap_start'] else None
     chap_end = int(data['chap_end']) if data['chap_end'] else None
+    print(f'''
+    +-----------+-----------------+
+    |Book       | {book}
+    |Count      | {count}
+    |Chap_start | {chap_start}
+    |Chap_end   | {chap_end}
+    +-----------------------------+
+    ''')
     file = create_csv(book, count, chap_start, chap_end)
     file_path = file.name
 
