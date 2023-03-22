@@ -38,7 +38,7 @@ def create_csv(book_id, less_than_count=100, chap_start=None, chap_end=None):
     else:
         chunks.extend(get_tokens_by_chunk(TokenType.lemma, ChunkType.book)[book_id])
     book_counts = Counter(chunks)
-    f = open(f"{book_id}{'_'+ str(chap_start )+ '-' + str(chap_end) if chap_start else ''}_{less_than_count}_cards.csv", 'w', encoding="UTF-8")
+    f = open(f"/tmp/{book_id}{'_'+ str(chap_start )+ '-' + str(chap_end) if chap_start else ''}_{less_than_count}_cards.csv", 'w', encoding="UTF-8")
     writer = csv.writer(f)
     writer.writerow(["Lemma", "Gloss"])
     writer.writerow(["Example (Occurrences)", "Gloss (Parsing)"])
